@@ -96,6 +96,10 @@
                 "title": "Enable Diagnostic Logging on startup",
                 "default": false,
                 "type": "boolean"
+            },
+            "location": {
+                "title": "Blink Location for this Home",
+                "type": "string"
             }
         },
         "required": [
@@ -118,6 +122,7 @@
         },
         { "type": "section", "title": "Advanced Settings", "expandable": true, "expanded": false,
             "items": [
+                "location",
                 "camera-thumbnail-refresh-seconds",
                 "camera-status-polling-seconds", "camera-motion-polling-seconds",
                 "logging", "enable-startup-diagnostic"
