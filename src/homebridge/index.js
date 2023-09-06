@@ -43,7 +43,14 @@ class HomebridgeBlink {
             // await this.conn.subscribe(handleUpdates);
             // await this.conn.observe(handleUpdates);
 
-            const data = [...this.blink.networks.values(), ...this.blink.cameras.values()];
+            const rawData = [...this.blink.networks.values(), ...this.blink.cameras.values()];
+            const location = this.config.location;
+            const data = location ? rawData.filter(device =>  device.networkID === location) : rawData;
+
+            if (!data.length) {
+                this.log.error('No devices found.');
+            }
+
             this.accessoryLookup = data.map(entry => entry.createAccessory(this.api, this.cachedAccessories));
 
             this.api.unregisterPlatformAccessories(
